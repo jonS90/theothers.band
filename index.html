@@ -10,31 +10,35 @@
   <link href="css/style.css" type="text/css" rel="stylesheet" media="screen,projection"/>
 </head>
 <body class="red darken-2">
-  <nav class="red darken-2 z-depth-4" role="navigation">
-    <div class="nav-wrapper container">
-      <a id="logo-container" href="#" class="brand-logo left white-text truncate">the others</a>
-      <ul class="right hide-on-med-and-down white-text">
-        <li><a href="#about" class="white-text">about</a></li>
-        <li><a href="#connect" class="white-text">connect</a></li>
-        <li><a href="#upcoming" class="white-text">upcoming</a></li>
-      </ul>
-      <ul id="nav-mobile" class="side-nav">
-        <li><a href="#about">about</a></li>
-        <li><a href="#connect">connect</a></li>
-        <li><a href="#upcoming">upcoming</a></li>
-      </ul>
-      <a href="#" data-activates="nav-mobile" class="button-collapse"><i class="mdi-navigation-menu"></i></a>
-    </div>
-  </nav>
 
-  <div id="index-banner" class="parallax-container" style="height:400px">
-    <div class="section no-pad-bot">
-      <div class="container">
-
+  <div class="navbar-fixed">
+    <nav class="red darken-2 z-depth-4" role="navigation">
+      <div class="nav-wrapper container">
+        <a id="logo-container" href="#" class="brand-logo left white-text truncate">the others</a>
+        <ul class="right hide-on-med-and-down white-text">
+          <li><a href="#about" class="white-text">about</a></li>
+          <li><a href="#connect" class="white-text">connect</a></li>
+          <li><a href="#upcoming" class="white-text">upcoming</a></li>
+        </ul>
+        <ul id="nav-mobile" class="side-nav">
+          <li><a href="#about">about</a></li>
+          <li><a href="#connect">connect</a></li>
+          <li><a href="#upcoming">upcoming</a></li>
+        </ul>
+        <a href="#" data-activates="nav-mobile" class="button-collapse"><i class="mdi-navigation-menu"></i></a>
       </div>
-    </div>
-    <div class="parallax"><img src="res/brewpub-1.jpg" alt="Unsplashed background img 2"></div>
+    </nav>
   </div>
+
+  <div class="img">
+    <img src="res/brewpub-1.jpg" width="100%">
+  </div>
+  <!-- <div class="parallax-container" style="height:400px">
+    <div class="section no-pad-bot"> <div class="container"> </div> </div>
+    <div class="parallax">
+      <img src="res/brewpub-1.jpg" alt="Unsplashed background img 2">
+    </div>
+  </div> -->
 
   <h2 class="center">About</h2>
   <p class="center white-text flow-text" id="about">The others are a nascent group, bent on mastering uniquely arranged standards and obscurities. Allegedly, they materialized into existence around Morgantown, West Virginia. They are soon to be world famous.</p>
@@ -129,10 +133,12 @@
     </div>
   </div>
 
-  <footer class="page-footer teal darken-2">
+  <footer class="page-footer blue-grey darken-2">
     <div class="footer-content center">
       <div class="container white-text">
         The End
+        <br>
+        <br>
       </div>
     </div>
   </footer>
