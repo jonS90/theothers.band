@@ -5,10 +5,16 @@
  *
  * Made By MaterializeCSS.com
  */
- 
+
 p,h2 {
   color: #FFF;
 }
+
+table.striped tbody tr:nth-child(odd) {
+    background-color: #B80000; }
+table.hoverable tbody tr:hover {
+      background-color: #B80000; }
+
 
 .parallax-container {
   min-height: 380px;
