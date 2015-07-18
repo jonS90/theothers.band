@@ -10,6 +10,11 @@ p,h2 {
   color: #FFF;
 }
 
+.the-others-logo {
+  font-family: monospace
+}
+
+
 table.striped tbody tr:nth-child(odd) {
     background-color: #B80000; }
 table.hoverable tbody tr:hover {
