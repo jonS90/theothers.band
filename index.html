@@ -148,6 +148,25 @@
   <script src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
   <script src="js/materialize.js"></script>
   <script src="js/init.js"></script>
+  <script>
+    $(window).scroll(function handleScroll() {
+      var scrollTop = $(document).scrollTop();
+      if (scrollTop > handleScroll.lastScrollTop) {
+        if (!handleScroll.isHidden) {
+          console.log('hide');
+          handleScroll.isHidden = true;
+          $('.navbar-fixed').stop().animate({opacity:0}, 200);
+        }
+      } else {
+        if (handleScroll.isHidden) {
+          console.log('show');
+          handleScroll.isHidden = false;
+          $('.navbar-fixed').stop().animate({opacity:1}, 800);
+        }
+      }
+      handleScroll.lastScrollTop = scrollTop;
+    });
+  </script>
 
   </body>
 </html>
