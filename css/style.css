@@ -6,8 +6,12 @@
  * Made By MaterializeCSS.com
  */
 
-p,h2 {
+p,h2,h3 {
   color: #FFF;
+}
+
+h3,h5 {
+  font-family: monospace;
 }
 
 .the-others-logo {
