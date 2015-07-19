@@ -18,6 +18,11 @@ h3,h5 {
   font-family: monospace
 }
 
+.collapsible-header,.collapsible-body {
+  color: white;
+  background-color: #B82020;
+  border-bottom: 1px solid #981010;
+}
 
 table.striped tbody tr:nth-child(odd) {
     background-color: #B80000; }
