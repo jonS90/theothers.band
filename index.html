@@ -186,7 +186,12 @@
   <script src="js/init.js"></script>
   <script>
     $(window).ready(function() {
-      $(".button-collapse").sideNav();
+      $('.button-collapse').sideNav({
+          menuWidth: 240, // default is 240
+          edge: 'left', // Choose the horizontal origin
+          closeOnClick: true // Closes side-nav on <a> clicks, useful for Angular/Meteor
+        }
+      );
       $('.parallax').parallax();
       $('.collapsible').collapsible({
         accordion : false // A setting that changes the collapsible behavior to expandable instead of the default accordion style
@@ -195,7 +200,7 @@
     $(window).scroll(function handleScroll() {
       if (window.forceHideNavbar) {
         window.forceHideNavbar = false;
-        $('.navbar-fixed').stop().animate({opacity:0}, 200); $('.button-collapse').sideNav('hide');
+        $('.navbar-fixed').stop().animate({opacity:0}, 200);
         handleScroll.isHidden = true;
       } else {
         var scrollTop = $(document).scrollTop();
@@ -203,7 +208,7 @@
           if (!handleScroll.isHidden) {
             console.log('hide');
             handleScroll.isHidden = true;
-            $('.navbar-fixed').stop().animate({opacity:0}, 200); $('.button-collapse').sideNav('hide');
+            $('.navbar-fixed').stop().animate({opacity:0}, 200);
           }
         } else {
           if (handleScroll.isHidden) {
