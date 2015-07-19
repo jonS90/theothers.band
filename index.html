@@ -192,24 +192,34 @@
         accordion : false // A setting that changes the collapsible behavior to expandable instead of the default accordion style
       });
     });
-
     $(window).scroll(function handleScroll() {
-      var scrollTop = $(document).scrollTop();
-      if (scrollTop > handleScroll.lastScrollTop) {
-        if (!handleScroll.isHidden) {
-          console.log('hide');
-          handleScroll.isHidden = true;
-          $('.navbar-fixed').stop().animate({opacity:0}, 200);
-        }
+      if (window.forceHideNavbar) {
+        window.forceHideNavbar = false;
+        $('.navbar-fixed').stop().animate({opacity:0}, 200); $('.button-collapse').sideNav('hide');
+        handleScroll.isHidden = true;
       } else {
-        if (handleScroll.isHidden) {
-          console.log('show');
-          handleScroll.isHidden = false;
-          $('.navbar-fixed').stop().animate({opacity:1}, 800);
+        var scrollTop = $(document).scrollTop();
+        if (scrollTop > handleScroll.lastScrollTop) {
+          if (!handleScroll.isHidden) {
+            console.log('hide');
+            handleScroll.isHidden = true;
+            $('.navbar-fixed').stop().animate({opacity:0}, 200); $('.button-collapse').sideNav('hide');
+          }
+        } else {
+          if (handleScroll.isHidden) {
+            console.log('show');
+            handleScroll.isHidden = false;
+            $('.navbar-fixed').stop().animate({opacity:1}, 800);
+          }
         }
       }
       handleScroll.lastScrollTop = scrollTop;
     });
+    $('.nav-wrapper ul li a').click(function() {
+      window.forceHideNavbar = true;
+    });
+
+
   </script>
 
   </body>
