@@ -197,10 +197,18 @@
         accordion : false // A setting that changes the collapsible behavior to expandable instead of the default accordion style
       });
     });
+
+    $('.nav-wrapper ul li a').click(function() {
+      window.forceHideNavbar = true;
+    });
     $(window).scroll(function handleScroll() {
       if (window.forceHideNavbar) {
         window.forceHideNavbar = false;
-        $('.navbar-fixed').stop().animate({opacity:0}, 200);
+        $('.navbar-fixed').stop().animate({opacity:0}, 200, function() {
+          $('.navbar-fixed').css('visibility','hidden');
+          $('.navbar-fixed').css('opacity',1);
+          $('.side-nav').css('visibility','visible');
+        });
         handleScroll.isHidden = true;
       } else {
         var scrollTop = $(document).scrollTop();
@@ -208,20 +216,23 @@
           if (!handleScroll.isHidden) {
             console.log('hide');
             handleScroll.isHidden = true;
-            $('.navbar-fixed').stop().animate({opacity:0}, 200);
+            $('.navbar-fixed').stop().animate({opacity:0}, 200, function() {
+              $('.navbar-fixed').css('visibility','hidden');
+              $('.navbar-fixed').css('opacity',1);
+              $('.side-nav').css('visibility','visible');
+            });
           }
         } else {
           if (handleScroll.isHidden) {
             console.log('show');
             handleScroll.isHidden = false;
+
+            $('.navbar-fixed').css('visibility','visible');
             $('.navbar-fixed').stop().animate({opacity:1}, 800);
           }
         }
       }
       handleScroll.lastScrollTop = scrollTop;
-    });
-    $('.nav-wrapper ul li a').click(function() {
-      window.forceHideNavbar = true;
     });
 
 
