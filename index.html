@@ -1,0 +1,111 @@
+</HTML>
+<head>
+  <link rel="stylesheet" href="https://storage.googleapis.com/code.getmdl.io/1.0.4/material.indigo-pink.min.css">
+  <script src="https://storage.googleapis.com/code.getmdl.io/1.0.4/material.min.js"></script>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+  <script src="http://cdnjs.cloudflare.com/ajax/libs/gsap/1.17.0/TweenLite.min.js"></script>
+  <script src="http://cdnjs.cloudflare.com/ajax/libs/gsap/1.17.0/plugins/CSSPlugin.min.js"></script>
+</head>
+<body>
+  <!-- Uses a transparent header that draws on top of the layout's background -->
+  <style>
+  .theothers-layout-transparent {
+    background: url('http://the.others.band/res/brewpub-2-cropped.jpg') center / cover;
+  }
+  .mdl-card {
+    min-height: inherit; /* let's me collapse cards in animations */
+  }
+  .theothers-layout-transparent .mdl-layout__header,
+  .theothers-layout-transparent .mdl-layout__drawer-button {
+    /* This background is dark, so we set text to white. Use 87% black instead if
+       your background is light. */
+    color: white;
+  }
+  </style>
+
+  <style>
+  a.active {
+    font-weight: 900;
+  }
+  </style>
+  <script>
+  var visibilityAnimations = {};
+  function navigate(e) {
+    var activePage = e.getAttribute("data-page");
+    var pageSelector = "[data-page='@']".replace("@", activePage);
+    $(".mdl-navigation__link").removeClass("active");
+    $(".mdl-navigation__link" + pageSelector).addClass("active");
+    $("div[data-page]").each(function(index, element) {
+        var curPage = element.getAttribute("data-page");
+        if (!visibilityAnimations[curPage]) {
+          var selector = "div[data-page='@']".replace('@', element.getAttribute("data-page"));
+          visibilityAnimations[curPage] = TweenLite.to(selector, 0.5, {height:0, paused:true, ease: Strong.easeIn});
+        }
+
+        if (curPage === activePage) {
+          visibilityAnimations[curPage].reverse();
+        } else {
+          visibilityAnimations[curPage].play();
+        }
+    });
+    $("div" + pageSelector).show(500);
+  }
+  </script>
+  
+  <div class="theothers-layout-transparent mdl-layout mdl-js-layout">
+    <header class="mdl-layout__header mdl-layout__header--transparent">
+      <div class="mdl-layout__header-row">
+        <!-- Title -->
+        <span class="mdl-layout-title">The Others</span>
+        <!-- Add spacer, to align navigation to the right -->
+        <div class="mdl-layout-spacer"></div>
+        <!-- Navigation -->
+        <nav class="mdl-navigation">
+          <a class="mdl-navigation__link" href="">nothing</a>
+        </nav>
+      </div>
+    </header>
+    <div class="mdl-layout__drawer">
+      <span class="mdl-layout-title">Title</span>
+      <nav class="mdl-navigation">
+        <a class="mdl-navigation__link active" onclick="navigate(this)" href="javascript:void(0);" data-page="about-page"    >About</a>
+        <a class="mdl-navigation__link"        onclick="navigate(this)" href="javascript:void(0);" data-page="timeline-page" >Timeline</a>
+        <a class="mdl-navigation__link"        onclick="navigate(this)" href="javascript:void(0);" data-page="connect-page"  >Connect</a>
+      </nav>
+    </div>
+    <main class="mdl-layout__content">
+      <div class="mdl-grid" style="max-width:900px; margin-top:400px">
+         <div data-page="about-page" class="mdl-card mdl-shadow--2dp mdl-cell--12-col">
+           <div class="mdl-card__title">
+             <h2 class="mdl-card__title-text">Welcome</h2>
+           </div>
+           <div class="mdl-card__supporting-text">
+
+             <i>The Others</i> are a trecherous trio of museful musicians,
+             banded together towards Being A Band. Their sm&ouml;rg&aring;sbord
+             repertoire includes Beatles hits, folk classics, forgotten
+             obscurities, and contemporary pop songs. They are projected to be
+             world famous by tomorrow morning.
+
+           </div>
+         </div>
+         <div class="hidden mdl-card mdl-shadow--2dp mdl-cell--12-col psueo-page">
+           <div class="mdl-card__title">
+             <h2 class="mdl-card__title-text">Welcome</h2>
+           </div>
+           <div class="mdl-card__supporting-text">
+
+             <i>The Others</i> are a trecherous trio of museful musicians,
+             banded together towards Being A Band. Their sm&ouml;rg&aring;sbord
+             repertoire includes Beatles hits, folk classics, forgotten
+             obscurities, and contemporary pop songs. They are projected to be
+             world famous by tomorrow morning.
+
+           </div>
+         </div>
+      </div>
+    </main>
+  </div>
+</body>
+</HTML>
