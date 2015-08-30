@@ -30,23 +30,66 @@
   }
   </style>
   <script>
-  var visibilityAnimations = {};
+  var hideAnimations = {};
+  var showAnimations = {};
+  TweenLite.onOverwrite(function() {
+      console.log("overwrite!")
+  });
   function navigate(e) {
+    console.log("-------- navigate ----------");
     var activePage = e.getAttribute("data-page");
     var pageSelector = "[data-page='@']".replace("@", activePage);
     $(".mdl-navigation__link").removeClass("active");
     $(".mdl-navigation__link" + pageSelector).addClass("active");
-    $("div[data-page]").each(function(index, element) {
-        var curPage = element.getAttribute("data-page");
-        if (!visibilityAnimations[curPage]) {
-          var selector = "div[data-page='@']".replace('@', element.getAttribute("data-page"));
-          visibilityAnimations[curPage] = TweenLite.to(selector, 0.5, {height:0, paused:true, ease: Strong.easeIn});
+    $("div[data-page]").each(function(index, curElement) {
+        var curPage = curElement.getAttribute("data-page");
+        if (!hideAnimations[curPage]) {
+          var selector = "div[data-page='@']".replace('@', curPage);
+          hideAnimations[curPage] = TweenLite.to(selector, 1, {height:0, left:1000, paused:true, ease: Strong.easeOut});
+          hideAnimations[curPage].eventCallback("onStart", function() {
+            showAnimations[curPage].kill();
+            console.log("start hide " + curPage);
+          });
+          hideAnimations[curPage].eventCallback("onComplete", function() {
+            console.log("show " + curPage + ": " + showAnimations[curPage].totalProgress());
+            console.log("hide " + curPage + ": " + hideAnimations[curPage].totalProgress());
+            console.log("complete hide" + curPage);
+            hideAnimations[curPage].kill();
+            hideAnimations[curPage] = null;
+          });
+        }
+        if (!showAnimations[curPage]) {
+          var selector = "div[data-page='@']".replace('@', curPage);
+          showAnimations[curPage] = TweenLite.to(selector, 1, {left:0, height:"100ox", paused:true, ease: Strong.easeOut});
+          showAnimations[curPage].eventCallback("onStart", function() {
+            hideAnimations[curPage].kill();
+            console.log("start show " + curPage);
+            console.log($(curElement).hasClass("hidden"));
+            $(curElement).removeClass("hidden");
+            console.log($(curElement).hasClass("hidden"));
+            $(curElement).height("100px");
+            console.log($(curElement).height());
+            console.log($(curElement).css("left", "-1000"));
+            hideAnimations[curPage].totalProgress(0);
+            console.log("set to 0: show " + curPage + ": " + showAnimations[curPage].totalProgress());
+          });
+          showAnimations[curPage].eventCallback("onComplete", function() {
+            console.log("show " + curPage + ": " + showAnimations[curPage].totalProgress());
+            console.log("hide " + curPage + ": " + hideAnimations[curPage].totalProgress());
+            console.log("complete show " + curPage);
+            showAnimations[curPage].kill();
+            showAnimations[curPage] = null;
+          });
         }
 
         if (curPage === activePage) {
-          visibilityAnimations[curPage].reverse();
+          console.log("show " + curPage + ": " + showAnimations[curPage].totalProgress());
+          console.log("hide " + curPage + ": " + hideAnimations[curPage].totalProgress());
+          showAnimations[curPage].restart();
         } else {
-          visibilityAnimations[curPage].play();
+          console.log("show " + curPage + ": " + showAnimations[curPage].totalProgress());
+          console.log("hide " + curPage + ": " + hideAnimations[curPage].totalProgress());
+          hideAnimations[curPage].restart();
         }
     });
     $("div" + pageSelector).show(500);
@@ -90,17 +133,13 @@
 
            </div>
          </div>
-         <div class="hidden mdl-card mdl-shadow--2dp mdl-cell--12-col psueo-page">
+         <div data-page="timeline-page" class="hidden mdl-card mdl-shadow--2dp mdl-cell--12-col">
            <div class="mdl-card__title">
-             <h2 class="mdl-card__title-text">Welcome</h2>
+             <h2 class="mdl-card__title-text">Timeline</h2>
            </div>
            <div class="mdl-card__supporting-text">
 
-             <i>The Others</i> are a trecherous trio of museful musicians,
-             banded together towards Being A Band. Their sm&ouml;rg&aring;sbord
-             repertoire includes Beatles hits, folk classics, forgotten
-             obscurities, and contemporary pop songs. They are projected to be
-             world famous by tomorrow morning.
+             not implemented
 
            </div>
          </div>
