@@ -16,6 +16,25 @@
   .mdl-card {
     min-height: inherit; /* let's me collapse cards in animations */
   }
+
+  div[data-page="timeline-page"].mdl-card {
+    margin-bottom:50px;
+  }
+
+  .brewpub-card > .mdl-card__title {
+    color: #fff;
+    height: 176px;
+    background: url('./img/brewpub.jpg') center/cover;
+  }
+
+  .brewpub-card > .mdl-card__menu {
+    color:#fff;
+  }
+
+  .autism-card > .mdl-card__title {
+    height: 176px;
+    background: url('./img/autism-walk-min.png') center/cover;
+  }
   .theothers-layout-transparent .mdl-layout__header,
   .theothers-layout-transparent .mdl-layout__drawer-button {
     /* This background is dark, so we set text to white. Use 87% black instead if
@@ -29,29 +48,6 @@
     font-weight: 900;
   }
   </style>
-  <script>
-  var visibilityAnimations = {};
-  function navigate(e) {
-    var activePage = e.getAttribute("data-page");
-    var pageSelector = "[data-page='@']".replace("@", activePage);
-    $(".mdl-navigation__link").removeClass("active");
-    $(".mdl-navigation__link" + pageSelector).addClass("active");
-    $("div[data-page]").each(function(index, element) {
-        var curPage = element.getAttribute("data-page");
-        if (!visibilityAnimations[curPage]) {
-          var selector = "div[data-page='@']".replace('@', element.getAttribute("data-page"));
-          visibilityAnimations[curPage] = TweenLite.to(selector, 0.5, {height:0, paused:true, ease: Strong.easeIn});
-        }
-
-        if (curPage === activePage) {
-          visibilityAnimations[curPage].reverse();
-        } else {
-          visibilityAnimations[curPage].play();
-        }
-    });
-    $("div" + pageSelector).show(500);
-  }
-  </script>
   
   <div class="theothers-layout-transparent mdl-layout mdl-js-layout">
     <header class="mdl-layout__header mdl-layout__header--transparent">
@@ -62,7 +58,9 @@
         <div class="mdl-layout-spacer"></div>
         <!-- Navigation -->
         <nav class="mdl-navigation">
-          <a class="mdl-navigation__link" href="">nothing</a>
+          <a class="mdl-navigation__link active" onclick="navigate(this)" href="javascript:void(0);" data-page="about-page"    >About</a>
+          <a class="mdl-navigation__link"        onclick="navigate(this)" href="javascript:void(0);" data-page="timeline-page" >Timeline</a>
+          <a class="mdl-navigation__link"        onclick="navigate(this)" href="javascript:void(0);" data-page="connect-page"  >Connect</a>
         </nav>
       </div>
     </header>
@@ -75,37 +73,153 @@
       </nav>
     </div>
     <main class="mdl-layout__content">
-      <div class="mdl-grid" style="max-width:900px; margin-top:400px">
-         <div data-page="about-page" class="mdl-card mdl-shadow--2dp mdl-cell--12-col">
-           <div class="mdl-card__title">
-             <h2 class="mdl-card__title-text">Welcome</h2>
-           </div>
-           <div class="mdl-card__supporting-text">
+      <div class="mdl-grid" style="max-width:900px;">
+        <div data-page="about-page" class="mdl-card mdl-shadow--2dp mdl-cell--12-col" style="margin-top:400px">
+          <div class="mdl-card__title">
+            <h2 class="mdl-card__title-text">Welcome</h2>
+          </div>
+          <div class="mdl-card__supporting-text">
 
-             <i>The Others</i> are a trecherous trio of museful musicians,
-             banded together towards Being A Band. Their sm&ouml;rg&aring;sbord
-             repertoire includes Beatles hits, folk classics, forgotten
-             obscurities, and contemporary pop songs. They are projected to be
-             world famous by tomorrow morning.
+            <i>The Others</i> are a trecherous trio of museful musicians,
+            banded together towards Being A Band. Their sm&ouml;rg&aring;sbord
+            repertoire includes Beatles hits, folk classics, forgotten
+            obscurities, and contemporary pop songs. They are projected to be
+            world famous by tomorrow morning.
 
-           </div>
-         </div>
-         <div class="hidden mdl-card mdl-shadow--2dp mdl-cell--12-col psueo-page">
-           <div class="mdl-card__title">
-             <h2 class="mdl-card__title-text">Welcome</h2>
-           </div>
-           <div class="mdl-card__supporting-text">
-
-             <i>The Others</i> are a trecherous trio of museful musicians,
-             banded together towards Being A Band. Their sm&ouml;rg&aring;sbord
-             repertoire includes Beatles hits, folk classics, forgotten
-             obscurities, and contemporary pop songs. They are projected to be
-             world famous by tomorrow morning.
-
-           </div>
-         </div>
+          </div>
+        </div>
+        <div data-page="timeline-page" class="mdl-card mdl-shadow--2dp mdl-cell--12-col">
+          <div class="mdl-card__title">
+            <h2 class="mdl-card__title-text">Timeline</h2>
+          </div>
+          <div class="mdl-card__supporting-text">
+            Scroll down to travel back in time.
+          </div>
+        </div>
+        <div data-page="timeline-page" class="museum-card mdl-card mdl-shadow--2dp mdl-cell--12-col">
+          <div class="mdl-card__title">
+            <h2 class="mdl-card__title-text">Museum Opening</h2>
+          </div>
+          <div class="mdl-card__supporting-text">
+            The Others serenaded first visitors of WVU's new Art Museum.
+          </div>
+          <div class="mdl-card__menu">
+            08/28/2015
+          </div>
+        </div>
+        <div data-page="timeline-page" class="mdl-card mdl-shadow--2dp mdl-cell--12-col autism-card">
+          <div class="mdl-card__title">
+            <h2 class="mdl-card__title-text">Autism 5k</h2>
+          </div>
+          <div class="mdl-card__supporting-text">
+            The Others played music for runners and walkers benefitting an Autism clinic.
+          </div>
+          <div class="mdl-card__actions mdl-card--border">
+            <a class="mdl-button mdl-button--colored mdl-js-button mdl-js-ripple-effect" href="https://www.facebook.com/events/1408709986104409/">
+              View on Facebook
+            </a>
+          </div>
+          <div class="mdl-card__menu">
+            03/20/2015
+          </div>
+        </div>
+        <div data-page="timeline-page" class="brewpub-card mdl-card mdl-shadow--2dp mdl-cell--12-col">
+          <div class="mdl-card__title">
+            <h2 class="mdl-card__title-text">Brew Pub</h2>
+          </div>
+          <div class="mdl-card__supporting-text">
+            The Others disrupted Brew Pub diners.
+          </div>
+          <div class="mdl-card__actions mdl-card--border">
+            <a class="mdl-button mdl-button--colored mdl-js-button mdl-js-ripple-effect" href="https://www.facebook.com/events/1408709986104409/">
+              View on Facebook
+            </a>
+          </div>
+          <div class="mdl-card__menu">
+            05/03/2015
+          </div>
+        </div>
+        <div data-page="connect-page" class="mdl-card mdl-shadow--2dp mdl-cell--12-col">
+          <div class="mdl-card__title">
+            <h2 class="mdl-card__title-text">Connect</h2>
+          </div>
+          <div class="mdl-card__actions mdl-card--border">
+            <a class="mdl-button mdl-button--colored mdl-js-button mdl-js-ripple-effect" href="mailto:mail@theothers.band?Subject=OMGOMG HAI!!!">
+              mail@theothers.band
+            </a>
+          </div>
+        </div>
       </div>
     </main>
   </div>
 </body>
+  <script>
+  var pageHiders = {};
+  $("div[data-page]").each(function(index, element) {
+      var page = element.getAttribute("data-page");
+      pageHiders[page] = createPageHider(page);
+      pageHiders[page].play();
+  })
+  pageHiders['about-page'].reverse();
+
+  function navigate(e) {
+    console.log("------ navigate --------");
+    var activePage = e.getAttribute("data-page");
+    var pageSelector = "[data-page='@']".replace("@", activePage);
+
+    // bold and unbold links
+    $(".mdl-navigation__link").removeClass("active");
+    $(".mdl-navigation__link" + pageSelector).addClass("active");
+
+    var activeHasBeenShown = false;
+    $("div[data-page]").each(function(index, element) {
+        var curPage = element.getAttribute("data-page");
+
+        if (curPage === activePage) {
+          if (!activeHasBeenShown) {
+            activeHasBeenShown = true;
+            console.log(curPage + ' (active) is getting shown now');
+            pageHiders[curPage].pause();
+            pageHiders[curPage].progress(0);
+            pageHiders[curPage].kill();
+            var shower = createPageShower(curPage);
+            shower.play();
+          }
+        } else {
+          console.log('(hide) ' + curPage);
+          pageHiders[curPage].kill();
+          pageHiders[curPage].play();
+        }
+
+    });
+  }
+
+  function createPageHider(page) {
+    var options = {};
+    options.left = 1000;
+    options.height = 0;
+    options["margin-top"] = 30;
+    options.paused = true;
+    var selector = "div[data-page='@']".replace('@', page);
+    var pageHider = TweenLite.to(selector, 1.0, options);
+    pageHider.eventCallback('onStart', function() {
+      console.log("start hide " + page);
+    });
+    return pageHider;
+  }
+  function createPageShower(page) {
+    // this shower assumes that element is already where it needs to be, so
+    // it can just do TweenLite.from(...)
+    var options = {};
+    options.left = -1000;
+    options.height = 0;
+    options.paused = true;
+    var selector = "div[data-page='@']".replace('@', page);
+    var pageShower = TweenLite.from(selector, 1.0, options);
+    pageShower.eventCallback('onStart', function() {
+      console.log("start show " + page);
+    });
+    return pageShower;
+  }
+  </script>
 </HTML>
