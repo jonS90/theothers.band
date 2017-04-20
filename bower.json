@@ -5,7 +5,8 @@
     "polymer": "Polymer/polymer#^1.4.0",
     "paper-toolbar": "^1.1.7",
     "paper-header-panel": "^1.1.7",
-    "paper-card": "PolymerElements/paper-card#^1.1.6"
+    "paper-card": "PolymerElements/paper-card#^1.1.6",
+    "paper-material": "PolymerElements/paper-material#^1.0.7"
   },
   "devDependencies": {
     "iron-component-page": "PolymerElements/iron-component-page#^1.0.0",
