@@ -7,14 +7,36 @@
     <style>
       :host {
         display: block;
+        --paper-header-panel-body: {
+          background-color: var(--paper-grey-300);
+        };
+      }
+      paper-toolbar {
+        --paper-toolbar-background: var(--paper-grey-800);
+      }
+      div#customtitle {
+        @apply(--paper-font-common-base);
+
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        font-size: 20px;
+        font-weight: 400;
+        line-height: 1;
+        pointer-events: none;
+      }
+      paper-header-panel {
+        height: 100vh;
       }
     </style>
   <paper-header-panel>
-    <paper-toolbar>
-      <div>Hello World!</div>
+    <paper-toolbar justify="center">
+      <div id="customtitle">The Others</div>
     </paper-toolbar>
+    <div class="fit">
+      hello
+    </div>
   </paper-header-panel>
-    <h2>Hello [[prop1]]</h2>
   </template>
 
   <script>
@@ -23,10 +45,6 @@
       is: 'theothers-band-app',
 
       properties: {
-        prop1: {
-          type: String,
-          value: 'theothers-band-app',
-        },
       },
 
     });
