@@ -1,0 +1,61 @@
+<html><head><link rel="import" href="../../bower_components/polymer/polymer.html">
+
+<link rel="import" href="../../bower_components/paper-header-panel/paper-header-panel.html">
+<link rel="import" href="../../bower_components/paper-material/paper-material.html">
+<link rel="import" href="../../bower_components/paper-toolbar/paper-toolbar.html">
+
+</head><body><dom-module id="theothers-band-app">
+  <template>
+    <style>
+      :host {
+        display: block;
+        --paper-header-panel-body: {
+          background-color: var(--paper-grey-300);
+        };
+      }
+      paper-toolbar {
+        --paper-toolbar-background: var(--paper-grey-800);
+      }
+      div#customtitle {
+        @apply(--paper-font-common-base);
+
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        font-size: 20px;
+        font-weight: 400;
+        line-height: 1;
+        pointer-events: none;
+      }
+      paper-header-panel {
+        height: 100vh;
+      }
+      div#mainpanel {
+        display: flex;
+        justify-content: center;
+      }
+      paper-material {
+        @apply(--paper-font-common-base);
+        margin: 50px;
+        padding: 50px;
+        min-height: 300px;
+        max-width: calc(100vw - 100px);
+        width: 600px;
+        background-color: white;
+      }
+    </style>
+  <paper-header-panel>
+    <paper-toolbar justify="center">
+      <div id="customtitle">The Others</div>
+    </paper-toolbar>
+    <div id="mainpanel" class="fit">
+      <paper-material>
+        The online presence of <i>The Others</i> is a bit lacking. We should make a Facebook page or something.
+      </paper-material>
+    </div>
+  </paper-header-panel>
+  </template>
+
+  <script>Polymer({is:"theothers-band-app",properties:{}});</script>
+</dom-module>
+</body></html>
