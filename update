@@ -1,0 +1,2 @@
+cp src/theothers-band-app/theothers-band-app.html docs/src/theothers-band-app/theothers-band-app.html
+cp ./index.html ./docs/index.html
